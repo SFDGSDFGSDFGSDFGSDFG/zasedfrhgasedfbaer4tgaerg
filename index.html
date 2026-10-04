@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080808">
+<title>Gio's Hub</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#080808;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow:hidden}
+#shell{position:fixed;inset:0;background:#080808}
+#bar{height:52px;position:absolute;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;gap:10px;padding:7px 12px;background:rgba(7,7,7,.96);border-bottom:1px solid #ff790055;box-shadow:0 4px 25px #000}
+.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:17px;color:#fff;white-space:nowrap}.mark{width:31px;height:31px;border-radius:8px;background:#ff7900;color:#080808;display:grid;place-items:center;font-weight:1000}.logo span{color:#ff7900}
+#remote{position:absolute;top:52px;left:0;width:100%;height:calc(100% - 52px);border:0;background:#080808}
+#loading{position:absolute;inset:52px 0 0;z-index:900;background:#080808;display:grid;place-items:center;color:#ff7900;font-weight:900;font-size:24px}.loadsmall{font-size:12px;color:#777;font-weight:400;margin-top:8px;text-align:center}
+#fallback{display:none;position:absolute;inset:52px 0 0;z-index:950;background:#080808;color:#eee;place-items:center;text-align:center}.fallbackbox{max-width:600px;padding:30px}.fallbackbox h2{color:#ff7900}.fallbackbox p{color:#999;line-height:1.5}.fallbackbox button{background:#ff7900;border:0;color:#080808;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer}
+</style>
+</head>
+<body>
+<div id="shell">
+  <div id="bar"><div class="logo"><div class="mark">G</div> Gio's <span>Hub</span></div></div>
+  <iframe id="remote" src="https://unpkg.com/snoopycollegetricks@latest/index.html" allow="fullscreen; autoplay; gamepad; clipboard-read; clipboard-write; web-share"></iframe>
+  <div id="loading">Gio's Hub<div class="loadsmall">Loading games from the remote hub…</div></div>
+  <div id="fallback"><div class="fallbackbox"><h2>Gio's Hub</h2><p>The remote game hub did not finish loading. The games are hosted by the original remote site, so this page does not copy or replace their game files.</p><button onclick="location.reload()">Retry</button></div></div>
+</div>
+<script>
+const frame=document.getElementById('remote'), loading=document.getElementById('loading'), fallback=document.getElementById('fallback');
+let loaded=false;
+frame.addEventListener('load',()=>{loaded=true;loading.style.display='none';});
+setTimeout(()=>{if(!loaded){loading.style.display='none';fallback.style.display='grid'}},12000);
+</script>
+</body>
+</html>
